@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExternalLink, Github, Smartphone, Globe, Database, Zap } from 'lucide-react';
+import ImageLoader from './ImageLoader';
 
 const Projects: React.FC = () => {
   const projects = [
@@ -78,32 +79,32 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-slate-800/50">
+    <section id="projects" className="py-16 md:py-20 bg-slate-800/50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 scroll-animate">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+          <div className="text-center mb-12 md:mb-16 scroll-animate">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
               Featured Projects
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">
               A showcase of my recent work, demonstrating expertise across different technologies 
               and domains. Each project represents a unique challenge and creative solution.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {projects.map((project, index) => (
               <div
                 key={project.id}
                 className="project-card group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl overflow-hidden hover:border-purple-500/50 card-interactive scroll-animate-rotate"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative overflow-hidden">
-                  <img
+                <div className="relative overflow-hidden h-48">
+                  <ImageLoader
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300"
-                    style={{ willChange: 'transform' }}
+                    className="w-full h-full object-cover transition-transform duration-300"
+                    loadingClassName="h-48"
                   />
                   <div className="absolute top-4 right-4">
                     <div className={`w-10 h-10 bg-gradient-to-br ${project.color} rounded-full flex items-center justify-center opacity-90`}>
@@ -113,9 +114,9 @@ const Projects: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-4 md:p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                    <h3 className="text-lg md:text-xl font-bold text-white">{project.title}</h3>
                     <span className={`px-2 py-1 text-xs font-medium rounded-full bg-gradient-to-r ${project.color} text-white`}>
                       {project.category}
                     </span>
@@ -129,7 +130,7 @@ const Projects: React.FC = () => {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-xs font-medium"
+                        className="px-2 py-1 md:px-3 md:py-1 bg-slate-700/50 text-slate-300 rounded-full text-xs font-medium"
                       >
                         {tag}
                       </span>
@@ -166,7 +167,7 @@ const Projects: React.FC = () => {
               href="https://github.com/johndeveloper?tab=repositories"
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2 touch-manipulation"
+              className="group bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2 touch-manipulation"
             >
               <span>View All Projects</span>
               <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
