@@ -57,8 +57,8 @@ const Hero: React.FC = () => {
                 {"> Initializing Developer Mode..."}
               </p>
               
-              {/* Enhanced Developer Name with Better Mobile Layout */}
-              <h1 className="font-robotic text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 md:mb-4 animate-fade-in-delay scroll-animate">
+              {/* Enhanced Developer Name with Mobile-Specific Font Sizes */}
+              <h1 className="font-robotic text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 md:mb-4 animate-fade-in-delay scroll-animate">
                 <div className="flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:justify-center md:items-center md:space-x-4">
                   {/* JOHN with white color */}
                   <span className="relative inline-block">
@@ -66,8 +66,8 @@ const Hero: React.FC = () => {
                       JOHN
                     </span>
                     {/* Sparkle effects */}
-                    <Sparkles className="absolute -top-1 -right-1 md:-top-2 md:-right-2 w-4 h-4 md:w-6 md:h-6 text-cyan-400 animate-pulse" />
-                    <Sparkles className="absolute -bottom-1 -left-1 w-3 h-3 md:w-4 md:h-4 text-purple-400 animate-pulse delay-500" />
+                    <Sparkles className="absolute -top-1 -right-1 md:-top-2 md:-right-2 w-3 h-3 md:w-6 md:h-6 text-cyan-400 animate-pulse" />
+                    <Sparkles className="absolute -bottom-1 -left-1 w-2 h-2 md:w-4 md:h-4 text-purple-400 animate-pulse delay-500" />
                   </span>
                   
                   {/* DEVELOPER with white color */}
@@ -76,8 +76,8 @@ const Hero: React.FC = () => {
                       DEVELOPER
                     </span>
                     {/* Code brackets animation */}
-                    <span className="absolute -left-2 md:-left-3 top-0 text-emerald-400 animate-pulse text-lg md:text-xl">{"<"}</span>
-                    <span className="absolute -right-2 md:-right-3 top-0 text-blue-400 animate-pulse delay-300 text-lg md:text-xl">{">"}</span>
+                    <span className="absolute -left-2 md:-left-3 top-0 text-emerald-400 animate-pulse text-sm md:text-xl">{"<"}</span>
+                    <span className="absolute -right-2 md:-right-3 top-0 text-blue-400 animate-pulse delay-300 text-sm md:text-xl">{">"}</span>
                   </span>
                 </div>
               </h1>
