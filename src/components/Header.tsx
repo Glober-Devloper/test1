@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, User, Briefcase, Mail, Award, GraduationCap, Building, Zap, Wifi, Battery, Clock } from 'lucide-react';
+import { Menu, X, User, Briefcase, Mail, Award, GraduationCap, Building, Zap, Battery, Clock } from 'lucide-react';
 
 interface HeaderProps {
   activeSection: string;
@@ -10,7 +10,6 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [batteryLevel, setBatteryLevel] = useState<number | null>(null);
   const [isCharging, setIsCharging] = useState(false);
-  const [networkStatus, setNetworkStatus] = useState<'online' | 'offline'>('online');
 
   const navItems = [
     { id: 'home', label: 'Home', icon: User },
@@ -57,21 +56,6 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
     getBatteryInfo();
   }, []);
 
-  // Network status
-  useEffect(() => {
-    const updateNetworkStatus = () => {
-      setNetworkStatus(navigator.onLine ? 'online' : 'offline');
-    };
-
-    window.addEventListener('online', updateNetworkStatus);
-    window.addEventListener('offline', updateNetworkStatus);
-
-    return () => {
-      window.removeEventListener('online', updateNetworkStatus);
-      window.removeEventListener('offline', updateNetworkStatus);
-    };
-  }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -85,6 +69,14 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
       hour: '2-digit', 
       minute: '2-digit',
       hour12: false 
+    });
+  };
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString([], {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric'
     });
   };
 
@@ -105,10 +97,10 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
           <div className="flex items-center justify-between">
             {/* System Information - Left Side */}
             <div className="flex items-center space-x-4 text-xs text-slate-300">
-              {/* Network Status */}
+              {/* Date */}
               <div className="flex items-center space-x-1 px-2 py-1 bg-slate-800/50 rounded-lg">
-                <Wifi className={`w-3 h-3 ${networkStatus === 'online' ? 'text-green-400' : 'text-red-400'}`} />
-                <span className="font-mono">{networkStatus === 'online' ? 'ONLINE' : 'OFFLINE'}</span>
+                <Clock className="w-3 h-3 text-blue-400" />
+                <span className="font-mono">{formatDate(currentTime)}</span>
               </div>
 
               {/* Battery Status */}
@@ -123,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
 
               {/* Current Time */}
               <div className="flex items-center space-x-1 px-2 py-1 bg-slate-800/50 rounded-lg">
-                <Clock className="w-3 h-3 text-blue-400" />
+                <Clock className="w-3 h-3 text-cyan-400" />
                 <span className="font-mono">{formatTime(currentTime)}</span>
               </div>
             </div>
@@ -206,8 +198,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
               <div className="mt-3 pt-3 border-t border-slate-700">
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div className="flex items-center space-x-1 px-2 py-1 bg-slate-800/50 rounded">
-                    <Wifi className={`w-3 h-3 ${networkStatus === 'online' ? 'text-green-400' : 'text-red-400'}`} />
-                    <span>{networkStatus}</span>
+                    <Clock className="w-3 h-3 text-blue-400" />
+                    <span>{formatDate(currentTime)}</span>
                   </div>
                   {batteryLevel !== null && (
                     <div className="flex items-center space-x-1 px-2 py-1 bg-slate-800/50 rounded">
@@ -216,7 +208,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
                     </div>
                   )}
                   <div className="flex items-center space-x-1 px-2 py-1 bg-slate-800/50 rounded col-span-2">
-                    <Clock className="w-3 h-3 text-blue-400" />
+                    <Clock className="w-3 h-3 text-cyan-400" />
                     <span className="font-mono">{formatTime(currentTime)}</span>
                   </div>
                 </div>

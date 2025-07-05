@@ -33,7 +33,7 @@ function App() {
       }
     };
 
-    // Optimized scroll animation observer for mobile
+    // Enhanced scroll animation observer for all devices
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -47,12 +47,9 @@ function App() {
       });
     }, observerOptions);
 
-    // Only observe scroll animations on desktop for better mobile performance
-    const isMobile = window.innerWidth <= 768;
-    if (!isMobile) {
-      const animateElements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale, .scroll-animate-rotate');
-      animateElements.forEach((el) => observer.observe(el));
-    }
+    // Observe all scroll animation elements
+    const animateElements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale, .scroll-animate-rotate');
+    animateElements.forEach((el) => observer.observe(el));
 
     // Optimized scroll handler to prevent conflicts with card hovers
     let ticking = false;
