@@ -57,17 +57,41 @@ const Hero: React.FC = () => {
                 {"> Initializing Developer Mode..."}
               </p>
               
-              {/* Enhanced Developer Name with Mobile-Specific Font Sizes */}
+              {/* Enhanced Developer Name - Single Line on Mobile */}
               <h1 className="font-robotic text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 md:mb-4 animate-fade-in-delay scroll-animate">
-                <div className="flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:justify-center md:items-center md:space-x-4">
+                {/* Mobile Layout - Single Line */}
+                <div className="flex md:hidden items-center justify-center space-x-2">
+                  {/* JOHN with white color */}
+                  <span className="relative inline-block">
+                    <span className="text-white font-black tracking-wider" data-text="JOHN">
+                      JOHN
+                    </span>
+                    {/* Sparkle effects - smaller on mobile */}
+                    <Sparkles className="absolute -top-1 -right-1 w-2 h-2 text-cyan-400 animate-pulse" />
+                    <Sparkles className="absolute -bottom-1 -left-1 w-2 h-2 text-purple-400 animate-pulse delay-500" />
+                  </span>
+                  
+                  {/* DEVELOPER with white color */}
+                  <span className="relative inline-block">
+                    <span className="text-white font-black tracking-wider" data-text="DEVELOPER">
+                      DEVELOPER
+                    </span>
+                    {/* Code brackets animation - smaller on mobile */}
+                    <span className="absolute -left-1 top-0 text-emerald-400 animate-pulse text-xs">{"<"}</span>
+                    <span className="absolute -right-1 top-0 text-blue-400 animate-pulse delay-300 text-xs">{">"}</span>
+                  </span>
+                </div>
+
+                {/* Desktop Layout - Two Lines */}
+                <div className="hidden md:flex flex-col items-center space-y-0 lg:flex-row lg:justify-center lg:items-center lg:space-y-0 lg:space-x-4">
                   {/* JOHN with white color */}
                   <span className="relative inline-block">
                     <span className="text-white font-black tracking-wider" data-text="JOHN">
                       JOHN
                     </span>
                     {/* Sparkle effects */}
-                    <Sparkles className="absolute -top-1 -right-1 md:-top-2 md:-right-2 w-3 h-3 md:w-6 md:h-6 text-cyan-400 animate-pulse" />
-                    <Sparkles className="absolute -bottom-1 -left-1 w-2 h-2 md:w-4 md:h-4 text-purple-400 animate-pulse delay-500" />
+                    <Sparkles className="absolute -top-2 -right-2 w-6 h-6 text-cyan-400 animate-pulse" />
+                    <Sparkles className="absolute -bottom-1 -left-1 w-4 h-4 text-purple-400 animate-pulse delay-500" />
                   </span>
                   
                   {/* DEVELOPER with white color */}
@@ -76,8 +100,8 @@ const Hero: React.FC = () => {
                       DEVELOPER
                     </span>
                     {/* Code brackets animation */}
-                    <span className="absolute -left-2 md:-left-3 top-0 text-emerald-400 animate-pulse text-sm md:text-xl">{"<"}</span>
-                    <span className="absolute -right-2 md:-right-3 top-0 text-blue-400 animate-pulse delay-300 text-sm md:text-xl">{">"}</span>
+                    <span className="absolute -left-3 top-0 text-emerald-400 animate-pulse text-xl">{"<"}</span>
+                    <span className="absolute -right-3 top-0 text-blue-400 animate-pulse delay-300 text-xl">{">"}</span>
                   </span>
                 </div>
               </h1>
