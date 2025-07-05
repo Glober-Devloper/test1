@@ -8,7 +8,7 @@ const Projects: React.FC = () => {
       id: 1,
       title: 'E-Commerce Platform',
       description: 'A full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.',
-      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/pro1.png',
       tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
       category: 'Full Stack',
       icon: Globe,
@@ -20,7 +20,7 @@ const Projects: React.FC = () => {
       id: 2,
       title: 'Task Management App',
       description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      image: 'https://images.pexels.com/photos/3584994/pexels-photo-3584994.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/pro2.png',
       tags: ['React', 'Firebase', 'Material-UI', 'WebSocket'],
       category: 'Frontend',
       icon: Zap,
@@ -32,7 +32,7 @@ const Projects: React.FC = () => {
       id: 3,
       title: 'AI-Powered Analytics',
       description: 'Machine learning dashboard that provides insights and predictions for business metrics with interactive visualizations.',
-      image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/pro3.png',
       tags: ['Python', 'TensorFlow', 'React', 'D3.js'],
       category: 'Data Science',
       icon: Database,
@@ -44,7 +44,7 @@ const Projects: React.FC = () => {
       id: 4,
       title: 'Social Media Mobile App',
       description: 'Cross-platform mobile application for social networking with features like photo sharing, messaging, and live streaming.',
-      image: 'https://images.pexels.com/photos/1482476/pexels-photo-1482476.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/pro4.png',
       tags: ['React Native', 'Firebase', 'WebRTC', 'Redux'],
       category: 'Mobile',
       icon: Smartphone,
@@ -56,7 +56,7 @@ const Projects: React.FC = () => {
       id: 5,
       title: 'DevOps Pipeline',
       description: 'Automated CI/CD pipeline with Docker, Kubernetes, and AWS for seamless deployment and scaling of applications.',
-      image: 'https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/pro1.png',
       tags: ['Docker', 'Kubernetes', 'AWS', 'Jenkins'],
       category: 'DevOps',
       icon: Globe,
@@ -68,7 +68,7 @@ const Projects: React.FC = () => {
       id: 6,
       title: 'Portfolio Website',
       description: 'A modern, responsive portfolio website with 3D animations, smooth transitions, and optimized performance.',
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: '/pro2.png',
       tags: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
       category: 'Frontend',
       icon: Zap,
@@ -104,6 +104,7 @@ const Projects: React.FC = () => {
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-300"
+                    fallbackSrc="https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800"
                     loadingClassName="h-48"
                   />
                   <div className="absolute top-4 right-4">
