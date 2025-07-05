@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot, User, Filter, Search } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, User, Filter, Search, ChevronUp, ChevronDown } from 'lucide-react';
 
 interface Message {
   id: number;
@@ -10,6 +10,7 @@ interface Message {
 
 const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFiltersVisible, setIsFiltersVisible] = useState(true);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -119,10 +120,10 @@ const Chatbot: React.FC = () => {
 
   return (
     <>
-      {/* Chat Toggle Button */}
+      {/* Chat Toggle Button - Adjusted for mobile */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center ${
+        className={`fixed bottom-20 md:bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center ${
           isOpen ? 'rotate-180' : ''
         }`}
       >
@@ -131,7 +132,7 @@ const Chatbot: React.FC = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-80 md:w-96 h-96 bg-slate-800/95 backdrop-blur-md border border-slate-700 rounded-xl shadow-2xl flex flex-col overflow-hidden">
+        <div className="fixed bottom-36 md:bottom-24 right-6 z-50 w-80 md:w-96 h-96 bg-slate-800/95 backdrop-blur-md border border-slate-700 rounded-xl shadow-2xl flex flex-col overflow-hidden">
           {/* Header */}
           <div className="bg-gradient-to-r from-purple-500 to-cyan-500 p-4 text-white">
             <div className="flex items-center space-x-3">
@@ -145,22 +146,39 @@ const Chatbot: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Filters */}
-          <div className="p-3 border-b border-slate-700">
-            <div className="flex items-center space-x-2 mb-2">
-              <Filter className="w-4 h-4 text-slate-400" />
-              <span className="text-xs text-slate-400">Quick topics:</span>
-            </div>
-            <div className="flex flex-wrap gap-1">
-              {quickFilters.map((filter) => (
+          {/* Quick Filters - Now Hideable */}
+          <div className="border-b border-slate-700">
+            <div className="p-3">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center space-x-2">
+                  <Filter className="w-4 h-4 text-slate-400" />
+                  <span className="text-xs text-slate-400">Quick topics:</span>
+                </div>
                 <button
-                  key={filter.label}
-                  onClick={() => handleQuickFilter(filter.query)}
-                  className="px-2 py-1 bg-slate-700/50 hover:bg-slate-600/50 text-xs text-slate-300 rounded transition-colors"
+                  onClick={() => setIsFiltersVisible(!isFiltersVisible)}
+                  className="p-1 hover:bg-slate-700/50 rounded transition-colors"
                 >
-                  {filter.label}
+                  {isFiltersVisible ? (
+                    <ChevronUp className="w-4 h-4 text-slate-400" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 text-slate-400" />
+                  )}
                 </button>
-              ))}
+              </div>
+              
+              {isFiltersVisible && (
+                <div className="flex flex-wrap gap-1 transition-all duration-300">
+                  {quickFilters.map((filter) => (
+                    <button
+                      key={filter.label}
+                      onClick={() => handleQuickFilter(filter.query)}
+                      className="px-2 py-1 bg-slate-700/50 hover:bg-slate-600/50 text-xs text-slate-300 rounded transition-colors"
+                    >
+                      {filter.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
